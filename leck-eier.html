@@ -1,107 +1,3 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eier-lecken.de | Excellence Edition</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel&display=swap');
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: #050505;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .wrapper-gold {
-            --gold-gradient: linear-gradient(45deg, #bf953f 0%, #fcf6ba 45%, #b38728 70%, #fbf5b7 100%);
-            --border-color: #aa771c;
-            
-            position: relative;
-            flex-grow: 1;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-       
-        .gold-border {
-            position: absolute;
-            top: 5%;
-            left: 5%;
-            right: 5%;
-            bottom: 5%;
-            border: 2px solid var(--border-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            outline: 1px solid var(--border-color);
-            outline-offset: -15px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-        }
-
-        
-        .content-gold {
-            text-align: center;
-            z-index: 10;
-        }
-
-        .wort-gold {
-            font-family: 'Alex Brush', cursive;
-            font-size: 15vw;
-            display: block;
-            margin: -2vh 0;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));
-        }
-
-        .footer-gold {
-            width: 100%;
-            height: 80px;
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-top: 1px solid #1a1a1a;
-            z-index: 20;
-        }
-
-        .copyright-button {
-            font-family: 'Cinzel', serif;
-            color: #444;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 0.8rem;
-            text-decoration: none;
-            background: none;
-            border: 1px solid transparent;
-            padding: 10px 25px;
-            cursor: pointer;
-            transition: all 0.5s ease;
-        }
-
-        .copyright-button:hover {
-            color: #fcf6ba;
-            border-color: #aa771c;
-            text-shadow: 0 0 10px rgba(191, 149, 63, 0.6);
-            box-shadow: inset 0 0 10px rgba(170, 119, 28, 0.2);
-            letter-spacing: 7px;
-        }
-
-        @media (max-width: 768px) {
-            .wort-gold { font-size: 20vw; }
-            .copyright-button { font-size: 0.6rem; letter-spacing: 3px; }
-        }
-    </style>
-</head>
 <body>
 
 <div class="wrapper-gold">
@@ -114,17 +10,17 @@
 </div>
 
 <footer class="footer-gold">
-    <a href="links.html" class="copyright-button">
-        © 2026 Alle Rechte vorbehalten LG Banane
+    <a href="https://eier-lecken.de" class="copyright-button">
+        © 2026 Alle Rechte vorbehalten
     </a>
 </footer>
 
 <script>
-
+    // Falls du eine Nachricht beim Klicken einbauen willst:
     document.querySelector('.copyright-button').addEventListener('click', function(e) {
-        console.log("Das Fußvolk hat den heiligen Button berührt.");
+        // alert('Zutritt nur für Befugte.'); 
+        console.log("Das Fußvolk hat geklickt.");
     });
 </script>
 
 </body>
-</html>

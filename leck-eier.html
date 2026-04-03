@@ -1,0 +1,93 @@
+<style>
+    /* Schriftarten für die edle Variante nachladen */
+    @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel&display=swap');
+
+    .wrapper-gold {
+        --gold-gradient: linear-gradient(45deg, #bf953f 0%, #fcf6ba 45%, #b38728 70%, #fbf5b7 100%);
+        --border-color: #aa771c;
+        
+        position: relative;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #050505;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    /* Der goldene Rahmen */
+    .gold-border {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        right: 5%;
+        bottom: 15%;
+        border: 2px solid var(--border-color);
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        outline: 1px solid var(--border-color);
+        outline-offset: -15px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+
+    /* Der Textbereich */
+    .content-gold {
+        text-align: center;
+        z-index: 10;
+    }
+
+    .wort-gold {
+        font-family: 'Alex Brush', cursive;
+        font-size: 15vw;
+        display: block;
+        margin: -2vh 0;
+        background: var(--gold-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+    }
+
+    /* Der untere Spalt (Footer) */
+    .footer-gold {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+        background-color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top: 1px solid #1a1a1a;
+    }
+
+    .copyright-gold {
+        font-family: 'Cinzel', serif;
+        color: #444;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+        .wort-gold { font-size: 20vw; }
+    }
+</style>
+
+<div class="wrapper-gold">
+    <div class="gold-border">
+        <div class="content-gold">
+            <span class="wort-gold">Eier</span>
+            <span class="wort-gold">Lecken</span>
+        </div>
+    </div>
+
+    <div class="footer-gold">
+        <div class="copyright-gold">© Alle Rechte vorbehalten LG</div>
+    </div>
+</div>

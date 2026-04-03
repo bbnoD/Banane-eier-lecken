@@ -1,0 +1,92 @@
+<style>
+    /* Grunddesign für die Ei-Variante */
+    .wrapper-egg {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #121212; /* Dunkles Anthrazit */
+        color: #E0E0E0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Der Spruch oben */
+    .spruch-egg {
+        font-size: 6rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: #FFD700; /* Goldgelb */
+        margin-bottom: 50px;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    /* Container für das Ei */
+    .ei-container {
+        font-size: 15rem;
+        cursor: pointer;
+        position: relative;
+        /* Animationen: Wackeln und Hüpfen */
+        animation: 
+            wackeln-egg 1s infinite ease-in-out alternate,
+            huepfen-egg 2s infinite ease-in-out;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .ei-container:hover {
+        color: #FF4500;
+        filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.8));
+    }
+
+    /* Animationen speziell benannt, um Konflikte zu vermeiden */
+    @keyframes wackeln-egg {
+        0% { transform: rotate(-5deg); }
+        100% { transform: rotate(5deg); }
+    }
+
+    @keyframes huepfen-egg {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+
+    /* Der kleine Spalt unten */
+    .footer-egg {
+        position: absolute;
+        bottom: 20px;
+        font-size: 0.8rem;
+        color: #555;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-top: 1px solid #333;
+        padding-top: 10px;
+    }
+
+    /* Mobile Anpassung */
+    @media (max-width: 600px) {
+        .spruch-egg { font-size: 3rem; }
+        .ei-container { font-size: 10rem; }
+    }
+</style>
+
+<div class="wrapper-egg">
+    <div class="spruch-egg">
+        Eier lecken
+    </div>
+
+    <div class="ei-container" title="Es wackelt...">
+        🥚
+    </div>
+
+    <div class="footer-egg">
+        © ALLE RECHTE VORBEHALTEN LG
+    </div>
+</div>

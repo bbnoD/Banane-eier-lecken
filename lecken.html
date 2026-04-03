@@ -1,29 +1,31 @@
 <style>
+    /* Wir nutzen fixed, um die index.html zu überlagern und Ränder zu killen */
     .wrapper-flip {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100vh;
-        background-color: #0d0e10; /* Sehr dunkles Schwarz-Blau */
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        overflow: hidden;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: #0d0e10;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        overflow: hidden !important;
         font-family: 'Arial Black', sans-serif;
-        position: relative;
+        z-index: 99999 !important;
     }
 
-    /* Der massive Flip-Board-Bereich */
     .massive-board {
         flex-grow: 1;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        position: relative;
+        width: 100%;
     }
 
-    /* Container für die Reihen */
     .board-content {
         display: flex;
         flex-direction: column;
@@ -31,35 +33,52 @@
         align-items: center;
     }
 
-    /* Eine Reihe (Wort) */
     .row-flip {
         display: flex;
         gap: 10px;
     }
 
-    /* Die einzelne Flip-Kachel */
+    /* Die mechanische Kachel */
     .flap {
         position: relative;
         background-color: #1a1d21;
-        width: 12vw; /* Leicht angepasst für bessere Lesbarkeit im Container */
-        height: 20vh;
+        width: 10vw;
+        height: 18vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 10px;
+        border-radius: 6px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         border: 2px solid #2a3036;
+        perspective: 1000px; /* Für den 3D-Flip Effekt */
+        overflow: hidden;
     }
 
-    /* Der Buchstabe innerhalb der Kachel */
+    /* Animation des Flippens */
     .letter-flip {
         text-transform: uppercase;
         color: #d1d9e1;
         font-weight: 900;
-        font-size: 15vh;
+        font-size: 14vh;
         margin: 0;
         line-height: 1;
+        display: inline-block;
+        backface-visibility: hidden;
+        animation: flip-in 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
     }
+
+    @keyframes flip-in {
+        0% { transform: rotateX(-90deg); opacity: 0; }
+        100% { transform: rotateX(0deg); opacity: 1; }
+    }
+
+    /* Zeitversetztes Flippen für den mechanischen Look */
+    .flap:nth-child(1) .letter-flip { animation-delay: 0.1s; }
+    .flap:nth-child(2) .letter-flip { animation-delay: 0.2s; }
+    .flap:nth-child(3) .letter-flip { animation-delay: 0.3s; }
+    .flap:nth-child(4) .letter-flip { animation-delay: 0.4s; }
+    .flap:nth-child(5) .letter-flip { animation-delay: 0.5s; }
+    .flap:nth-child(6) .letter-flip { animation-delay: 0.6s; }
 
     /* Die mechanische Trennlinie */
     .flap::after {
@@ -68,43 +87,44 @@
         top: 50%;
         left: 0;
         width: 100%;
-        height: 3px;
-        background-color: rgba(0,0,0,0.4);
+        height: 2px;
+        background-color: rgba(0,0,0,0.6);
         z-index: 2;
         transform: translateY(-50%);
     }
 
-    /* Der untere Spalt */
     .footer-spalt-flip {
-        height: 60px;
-        background-color: #1a1d21;
+        width: 100%;
+        height: 80px;
+        background-color: #15171a;
         display: flex;
         justify-content: center;
         align-items: center;
         border-top: 2px solid #2a2f35;
-        position: relative;
-        z-index: 10;
     }
 
-    .rechte-flip {
-        color: #6a737d;
+    .copyright-button-flip {
+        color: #4a535d;
         text-transform: uppercase;
         font-size: 0.8rem;
-        letter-spacing: 2px;
+        letter-spacing: 4px;
+        text-decoration: none;
+        padding: 10px 25px;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+        font-family: 'Courier New', Courier, monospace;
     }
 
-    /* Responsive Anpassung */
+    .copyright-button-flip:hover {
+        color: #d1d9e1;
+        border-color: #4a535d;
+        background-color: rgba(255,255,255,0.02);
+    }
+
     @media (max-width: 768px) {
-        .flap {
-            width: 18vw;
-            height: 12vh;
-        }
-        .letter-flip {
-            font-size: 9vh;
-        }
-        .row-flip {
-            gap: 5px;
-        }
+        .flap { width: 14vw; height: 10vh; }
+        .letter-flip { font-size: 8vh; }
+        .row-flip { gap: 5px; }
     }
 </style>
 
@@ -113,15 +133,15 @@
         <div class="board-content">
             
             <div class="row-flip">
-                <div class="flap"><span class="letter-flip"></span></div>
+                <div class="flap"><span class="letter-flip">&nbsp;</span></div>
                 <div class="flap"><span class="letter-flip">E</span></div>
                 <div class="flap"><span class="letter-flip">I</span></div>
                 <div class="flap"><span class="letter-flip">E</span></div>
                 <div class="flap"><span class="letter-flip">R</span></div>
-                <div class="flap"><span class="letter-flip"></span></div>
+                <div class="flap"><span class="letter-flip">&nbsp;</span></div>
             </div>
             
-            <div class="row-flip">
+            <div class="row-flip" style="margin-top: -10px;">
                 <div class="flap"><span class="letter-flip">L</span></div>
                 <div class="flap"><span class="letter-flip">E</span></div>
                 <div class="flap"><span class="letter-flip">C</span></div>
@@ -133,7 +153,9 @@
         </div>
     </div>
 
-    <div class="footer-spalt-flip">
-        <div class="rechte-flip">© Alle Rechte vorbehalten LG</div>
-    </div>
+    <footer class="footer-spalt-flip">
+        <a href="links.html" class="copyright-button-flip">
+            © 2026 Alle Rechte vorbehalten LG Banane
+        </a>
+    </footer>
 </div>

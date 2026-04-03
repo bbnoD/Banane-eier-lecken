@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eier lecken</title>
     <style>
-        /* Entfernt alle Standard-Abstände des Browsers */
+        
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: #000; /* Schwarzer Hintergrund als Basis */
-            overflow: hidden; /* Verhindert Scrollbalken beim Laden */
+            background-color: #000;
+            overflow: hidden; 
         }
 
-        /* Der Container füllt den kompletten Viewport aus */
+        
         #content {
             width: 100vw;
             height: 100vh;
@@ -38,10 +38,10 @@
             'lecki-eier.html'
         ];
         
-        // Zufällige Auswahl
+       
         const wahl = seiten[Math.floor(Math.random() * seiten.length)];
 
-        // Lädt den Inhalt der zufälligen Datei in das 'content' div
+      
         fetch(wahl)
             .then(response => {
                 if (!response.ok) {

@@ -1,21 +1,26 @@
 <style>
-    /* Wir nutzen fixed, um die index.html zu überlagern und Ränder zu killen */
+    /* Schriftart für den technischen Look */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
+
+    /* Der Wrapper killt die weißen Ränder der index.html durch position: fixed */
     .wrapper-flip {
         position: fixed !important;
         top: 0 !important;
         left: 0 !important;
         width: 100vw !important;
         height: 100vh !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        background-color: #0d0e10;
+        background-color: #0d0e10; /* Sehr dunkles Blau-Schwarz */
         display: flex !important;
         flex-direction: column !important;
         justify-content: space-between !important;
         align-items: center !important;
-        overflow: hidden !important;
         font-family: 'Arial Black', sans-serif;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
         z-index: 99999 !important;
+        overflow: hidden !important;
+        perspective: 1000px;
     }
 
     .massive-board {
@@ -30,99 +35,122 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
-        align-items: center;
     }
 
     .row-flip {
         display: flex;
-        gap: 10px;
+        gap: 8px;
     }
 
-    /* Die mechanische Kachel */
+    /* Die einzelne Kachel */
     .flap {
         position: relative;
         background-color: #1a1d21;
         width: 10vw;
-        height: 18vh;
+        height: 16vh;
+        border-radius: 6px;
+        border: 1px solid #000;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.6);
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 6px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        border: 2px solid #2a3036;
-        perspective: 1000px; /* Für den 3D-Flip Effekt */
         overflow: hidden;
+        /* Die mechanische Animation beim Laden */
+        animation: mechanical-flip 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) both;
+        transform-origin: center;
     }
 
-    /* Animation des Flippens */
     .letter-flip {
-        text-transform: uppercase;
         color: #d1d9e1;
+        font-size: 12vh;
         font-weight: 900;
-        font-size: 14vh;
-        margin: 0;
-        line-height: 1;
-        display: inline-block;
-        backface-visibility: hidden;
-        animation: flip-in 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+        text-transform: uppercase;
+        z-index: 1;
+        pointer-events: none;
     }
 
-    @keyframes flip-in {
-        0% { transform: rotateX(-90deg); opacity: 0; }
-        100% { transform: rotateX(0deg); opacity: 1; }
-    }
-
-    /* Zeitversetztes Flippen für den mechanischen Look */
-    .flap:nth-child(1) .letter-flip { animation-delay: 0.1s; }
-    .flap:nth-child(2) .letter-flip { animation-delay: 0.2s; }
-    .flap:nth-child(3) .letter-flip { animation-delay: 0.3s; }
-    .flap:nth-child(4) .letter-flip { animation-delay: 0.4s; }
-    .flap:nth-child(5) .letter-flip { animation-delay: 0.5s; }
-    .flap:nth-child(6) .letter-flip { animation-delay: 0.6s; }
-
-    /* Die mechanische Trennlinie */
-    .flap::after {
+    /* Die horizontale mechanische Trennlinie */
+    .flap::before {
         content: '';
         position: absolute;
         top: 50%;
         left: 0;
         width: 100%;
         height: 2px;
-        background-color: rgba(0,0,0,0.6);
-        z-index: 2;
-        transform: translateY(-50%);
+        background: rgba(0,0,0,0.8);
+        z-index: 5;
+        box-shadow: 0 1px 1px rgba(255,255,255,0.05);
     }
 
+    /* Der Flip-Effekt: Karte klappt von oben nach unten auf */
+    @keyframes mechanical-flip {
+        0% { 
+            transform: rotateX(-90deg); 
+            filter: brightness(0.4);
+            box-shadow: 0 0 0 rgba(0,0,0,0);
+        }
+        50% {
+            filter: brightness(1.3); /* Simuliert Lichtreflexion beim Umklappen */
+        }
+        100% { 
+            transform: rotateX(0deg); 
+            filter: brightness(1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        }
+    }
+
+    /* Zeitversetztes "Rattern" der Anzeige (Delays) */
+    .row-flip:nth-child(1) .flap:nth-child(1) { animation-delay: 0.1s; }
+    .row-flip:nth-child(1) .flap:nth-child(2) { animation-delay: 0.2s; }
+    .row-flip:nth-child(1) .flap:nth-child(3) { animation-delay: 0.3s; }
+    .row-flip:nth-child(1) .flap:nth-child(4) { animation-delay: 0.4s; }
+    .row-flip:nth-child(1) .flap:nth-child(5) { animation-delay: 0.5s; }
+    .row-flip:nth-child(1) .flap:nth-child(6) { animation-delay: 0.6s; }
+
+    .row-flip:nth-child(2) .flap:nth-child(1) { animation-delay: 0.7s; }
+    .row-flip:nth-child(2) .flap:nth-child(2) { animation-delay: 0.8s; }
+    .row-flip:nth-child(2) .flap:nth-child(3) { animation-delay: 0.9s; }
+    .row-flip:nth-child(2) .flap:nth-child(4) { animation-delay: 1.0s; }
+    .row-flip:nth-child(2) .flap:nth-child(5) { animation-delay: 1.1s; }
+    .row-flip:nth-child(2) .flap:nth-child(6) { animation-delay: 1.2s; }
+
+    /* Footer Bereich */
     .footer-spalt-flip {
-        width: 100%;
-        height: 80px;
-        background-color: #15171a;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-top: 2px solid #2a2f35;
+        width: 100% !important;
+        height: 80px !important;
+        background-color: #15171a !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        border-top: 2px solid #2a2f35 !important;
+        z-index: 100 !important;
     }
 
+    /* Der Button-Link */
     .copyright-button-flip {
-        color: #4a535d;
-        text-transform: uppercase;
-        font-size: 0.8rem;
-        letter-spacing: 4px;
-        text-decoration: none;
-        padding: 10px 25px;
-        border: 1px solid transparent;
-        transition: all 0.3s ease;
-        font-family: 'Courier New', Courier, monospace;
+        color: #4a535d !important;
+        text-transform: uppercase !important;
+        font-size: 0.8rem !important;
+        letter-spacing: 4px !important;
+        text-decoration: none !important;
+        padding: 12px 30px !important;
+        border: 1px solid transparent !important;
+        transition: all 0.3s ease !important;
+        cursor: pointer !important;
+        background: transparent !important;
+        display: inline-block !important;
     }
 
     .copyright-button-flip:hover {
-        color: #d1d9e1;
-        border-color: #4a535d;
-        background-color: rgba(255,255,255,0.02);
+        color: #d1d9e1 !important;
+        border-color: #4a535d !important;
+        background-color: rgba(255,255,255,0.02) !important;
+        letter-spacing: 5px !important;
     }
 
+    /* Mobile Optimierung */
     @media (max-width: 768px) {
-        .flap { width: 14vw; height: 10vh; }
+        .flap { width: 14vw; height: 12vh; }
         .letter-flip { font-size: 8vh; }
         .row-flip { gap: 5px; }
     }
@@ -141,7 +169,7 @@
                 <div class="flap"><span class="letter-flip">&nbsp;</span></div>
             </div>
             
-            <div class="row-flip" style="margin-top: -10px;">
+            <div class="row-flip">
                 <div class="flap"><span class="letter-flip">L</span></div>
                 <div class="flap"><span class="letter-flip">E</span></div>
                 <div class="flap"><span class="letter-flip">C</span></div>
